@@ -9,14 +9,12 @@ logging.level.org.springframework.boot.web.embedded.tomcat=INFO
 #DB mysql
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 spring.jpa.hibernate.ddl-auto=update
-spring.datasource.url = jdbc:mysql://localhost:3306/mddapi
-spring.datasource.username=openclassrooms_project
-spring.datasource.password=openclassrooms_project_password
+spring.datasource.url = jdbc:mysql://localhost:3306/my_database
+spring.datasource.username=db_user
+spring.datasource.password=db_password
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.jpa.show-sql:true
 
 #JWT Token
-openclassrooms.app.jwtSecret=======================mddapi===========================
+openclassrooms.app.jwtSecret=my-secret-key
 openclassrooms.app.jwtExpirationMs=2592000000
-
-
