@@ -1,0 +1,26 @@
+.center {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.logo {
+  width: 50%;
+  min-width: 250px;
+  max-width: 600px;
+}
+
+.home__btn {
+  display: flex;
+  gap: 80px;
+}
+
+@media only screen and (max-width: 480px) {
+  .home__btn {
+    margin-top: 20px;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
