@@ -13,13 +13,20 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { JwtInterceptor } from "./interceptors/jwt.interceptor";
 import { HomeComponent } from "./components/home/home.component";
+import { NotFoundComponent } from "./components/not-found/not-found.component";
+import { HeaderComponent } from "./components/header/header.component";
 
 const materialModules = [MatButtonModule, MatIconModule, MatToolbarModule];
 
 registerLocaleData(localeFr);
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    NotFoundComponent,
+    HeaderComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

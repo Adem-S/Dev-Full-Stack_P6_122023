@@ -17,6 +17,16 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+li,
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .button {
   background-color: #7763c5;
   color: white;
