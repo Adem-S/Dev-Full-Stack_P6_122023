@@ -4,6 +4,7 @@ import { HomeComponent } from "./components/home/home.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { UnauthGuard } from "./guards/unauth.guard";
+import { MeComponent } from "./components/me/me.component";
 
 const routes: Routes = [
   {
@@ -16,6 +17,11 @@ const routes: Routes = [
     canActivate: [UnauthGuard],
     loadChildren: () =>
       import("./features/auth/auth.module").then((m) => m.AuthModule),
+  },
+  {
+    path: "me",
+    canActivate: [AuthGuard],
+    component: MeComponent,
   },
   {
     path: "posts",

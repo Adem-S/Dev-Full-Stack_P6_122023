@@ -30,7 +30,7 @@ a {
 .button {
   background-color: #7763c5;
   color: white;
-  margin: 0 auto !important;
+  margin: 0 auto;
 }
 
 .mat-typography p {
@@ -50,7 +50,21 @@ a {
   top: 0.5em !important;
 }
 
-.auth-form {
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #7763c5;
+}
+
+.form--boder-input-black {
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: rgba(0, 0, 0, 0.12);
+  }
+}
+
+h2 {
+  font-size: 24px !important;
+}
+
+.form {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,12 +97,18 @@ a {
     align-items: center;
   }
   &__submit-btn {
-    margin-top: 10px;
+    margin-top: 5px !important;
   }
-  .error {
-    text-align: center;
-    margin-top: 10px !important;
-    display: block;
-    color: red;
+  &__logout {
+    color: #a40f0f;
+    cursor: pointer;
+    font-weight: bold;
   }
+}
+
+p.error {
+  text-align: center;
+  margin-top: 10px !important;
+  display: block;
+  color: red;
 }
