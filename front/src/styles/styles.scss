@@ -1,4 +1,84 @@
 /* You can add global styles to this file, and also import other style files */
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.button {
+  background-color: #7763c5;
+  color: white;
+  margin: 0 auto !important;
+}
+
+.mat-typography p {
+  margin: 0 !important;
+}
+
+.mat-form-field-infix {
+  border-top: 0 !important;
+}
+
+.mat-form-field {
+  width: 250px !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-prefix,
+.mat-form-field-appearance-outline .mat-form-field-suffix {
+  top: 0.5em !important;
+}
+
+.auth-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 40px;
+  gap: 20px;
+  position: relative;
+  &__back {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    cursor: pointer;
+  }
+  &__logo {
+    display: none;
+    @media only screen and (max-width: 480px) {
+      & {
+        display: block;
+        width: 50%;
+        min-width: 250px;
+        max-width: 600px;
+      }
+    }
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    max-width: 320px;
+    align-items: center;
+  }
+  &__submit-btn {
+    margin-top: 10px;
+  }
+  .error {
+    text-align: center;
+    margin-top: 10px !important;
+    display: block;
+    color: red;
+  }
+}

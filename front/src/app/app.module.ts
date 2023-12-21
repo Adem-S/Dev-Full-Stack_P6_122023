@@ -1,10 +1,22 @@
 import { NgModule } from "@angular/core";
-import { MatButtonModule } from "@angular/material/button";
 import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { LOCALE_ID } from "@angular/core";
+import { registerLocaleData } from "@angular/common";
+import localeFr from "@angular/common/locales/fr";
+
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { JwtInterceptor } from "./interceptors/jwt.interceptor";
 import { HomeComponent } from "./components/home/home.component";
+
+const materialModules = [MatButtonModule, MatIconModule, MatToolbarModule];
+
+registerLocaleData(localeFr);
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -12,9 +24,13 @@ import { HomeComponent } from "./components/home/home.component";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,
+    HttpClientModule,
+    ...materialModules,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: LOCALE_ID, useValue: "fr-FR" },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
