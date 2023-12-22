@@ -7,6 +7,11 @@ import { UpdateUserRequest } from "../../interfaces/updateUserRequest.interface"
 import { AuthSuccess } from "../../features/auth/interfaces/authSuccess.interface";
 import { User } from "src/app/interfaces/user.interface";
 import { AuthService } from "src/app/features/auth/services/auth.service";
+import { Subject } from "src/app/features/subjects/interfaces/subject.interface";
+import { SubjectService } from "src/app/features/subjects/services/subject.service";
+import { SubjectsResponse } from "src/app/features/subjects/interfaces/subjectsResponse.interface";
+import { take, tap } from "rxjs";
+import { MessageApiResponse } from "src/app/interfaces/messageApiResponse.interface";
 
 @Component({
   selector: "app-me",
@@ -17,17 +22,28 @@ export class MeComponent implements OnInit {
   onError: boolean = false;
   errorMessage: string = "";
   user!: User | undefined | null;
+  subjects!: Subject[];
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
     private sessionService: SessionService,
-    private userService: UserService
+    private userService: UserService,
+    private subjectService: SubjectService
   ) {}
 
   ngOnInit(): void {
     this.user = this.sessionService.user;
+    this.subjectService
+      .getSubjectSubscribed()
+      .pipe(
+        take(1),
+        tap((subjectsResponse: SubjectsResponse) => {
+          this.subjects = subjectsResponse.subjects;
+        })
+      )
+      .subscribe();
   }
 
   public form = this.fb.group({
@@ -67,5 +83,18 @@ export class MeComponent implements OnInit {
   logout(): void {
     this.sessionService.logOut();
     this.router.navigate([""]);
+  }
+
+  unsubscribe(id: number) {
+    this.subjectService
+      .unsubscribeFromSubject(id)
+      .pipe(
+        take(1),
+        tap((messageApiResponse: MessageApiResponse) => {
+          console.log(messageApiResponse);
+          this.subjects = this.subjects.filter((subject) => subject.id !== id);
+        })
+      )
+      .subscribe();
   }
 }

@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        console.log(event);
         this.showHeader =
           event.url != "/" &&
           event.url != "/404" &&
@@ -27,5 +26,10 @@ export class HeaderComponent implements OnInit {
       }
     });
     this.isLogged$ = this.sessionService.isLogged$;
+  }
+
+  toggleSideMenu(open: boolean): void {
+    this.showSideMenu = open;
+    document.body.style.overflow = open ? "hidden" : "auto";
   }
 }

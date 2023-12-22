@@ -19,8 +19,10 @@ import { HomeComponent } from "./components/home/home.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { MeComponent } from "./components/me/me.component";
+import { MatCardModule } from "@angular/material/card";
 
 const materialModules = [
+  MatCardModule,
   MatButtonModule,
   MatIconModule,
   MatToolbarModule,

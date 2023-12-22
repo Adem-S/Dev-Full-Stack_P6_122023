@@ -2,18 +2,20 @@
   <img src="/assets/logo_p6.png" alt="logo" class="header__logo" />
   <div *ngIf="isLogged$ | async" class="header__links">
     <a routerLink="posts" routerLinkActive="link-active">Articles</a>
-    <a routerLink="subjects" outerLinkActive="link-active">Thèmes</a>
-    <img routerLink="me" src="/assets/profile.svg" alt="profile" />
+    <a routerLink="subjects" routerLinkActive="link-active">Thèmes</a>
+    <a
+      class="header__profile"
+      routerLink="me"
+      routerLinkActive="link-image-active"
+    >
+      <img src="/assets/profile.svg" alt="profile" />
+    </a>
   </div>
   <button mat-icon-button class="header__menu">
-    <mat-icon (click)="showSideMenu = !showSideMenu">menu</mat-icon>
+    <mat-icon (click)="toggleSideMenu(true)">menu</mat-icon>
   </button>
 </mat-toolbar>
-<div
-  class="side-menu"
-  *ngIf="showSideMenu"
-  (click)="showSideMenu = !showSideMenu"
->
+<div class="side-menu" *ngIf="showSideMenu" (click)="toggleSideMenu(false)">
   <div class="side-menu__bar">
     <ul>
       <li>
@@ -23,6 +25,12 @@
         <a routerLink="subjects" routerLinkActive="link-active">Thèmes</a>
       </li>
     </ul>
-    <img routerLink="me" src="/assets/profile.svg" alt="profile" />
+    <a
+      class="side-menu__profile"
+      routerLink="me"
+      routerLinkActive="link-image-active"
+    >
+      <img src="/assets/profile.svg" alt="profile" />
+    </a>
   </div>
 </div>

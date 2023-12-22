@@ -1,0 +1,19 @@
+<div class="card-section">
+  <mat-card class="card" *ngFor="let subject of subjects">
+    <mat-card-title class="card__title">{{ subject.title }}</mat-card-title>
+    <mat-card-content class="card__content">
+      {{ subject.description }}
+    </mat-card-content>
+    <mat-card-actions class="card__actions">
+      <button
+        mat-raised-button
+        class="button"
+        (click)="
+          subject.subscribed ? unsubscribe(subject.id) : subscribe(subject.id)
+        "
+      >
+        {{ subject.subscribed ? "Se désabonner" : "S’abonner" }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
