@@ -13,9 +13,9 @@ import { AuthService } from "../../services/auth.service";
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent {
-  public hide: boolean = true;
-  public onError: boolean = false;
-  public errorMessage: string = "";
+  hide: boolean = true;
+  onError: boolean = false;
+  errorMessage: string = "";
 
   public form = this.fb.group({
     emailOrUsername: ["", [Validators.required, Validators.min(3)]],
@@ -35,7 +35,8 @@ export class LoginComponent {
     this.authService.login(loginRequest).subscribe({
       next: (response: AuthSuccess) => {
         localStorage.setItem("token", response.token);
-
+        this.onError = false;
+        this.errorMessage = "";
         this.authService.me().subscribe({
           next: (user: User) => {
             this.sessionService.logIn(user);
@@ -43,6 +44,7 @@ export class LoginComponent {
           },
           error: (error) => {
             this.onError = true;
+            this.errorMessage = "Une erreur est survenue";
           },
         });
       },

@@ -16,6 +16,10 @@ export class ListComponent implements OnInit {
   constructor(private subjectService: SubjectService) {}
 
   ngOnInit(): void {
+    this.getSubjects();
+  }
+
+  getSubjects(): void {
     this.subjectService
       .getSubjects()
       .pipe(
@@ -26,6 +30,7 @@ export class ListComponent implements OnInit {
       )
       .subscribe();
   }
+
   subscribe(id: number) {
     this.subjectService
       .subscribeFromSubject(id)

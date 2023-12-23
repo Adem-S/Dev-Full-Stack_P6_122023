@@ -60,16 +60,26 @@ export class MeComponent implements OnInit {
   public submit(): void {
     const updateUserRequest = this.form.value as UpdateUserRequest;
 
+    if (
+      updateUserRequest.email == this.user?.email ||
+      updateUserRequest.username == this.user?.username
+    ) {
+      return;
+    }
+
     this.userService.updateUser(updateUserRequest).subscribe({
       next: (response: AuthSuccess) => {
         localStorage.setItem("token", response.token);
-
+        this.onError = false;
+        this.errorMessage = "";
         this.authService.me().subscribe({
           next: (user: User) => {
             this.sessionService.logIn(user);
+            this.user = user;
           },
           error: () => {
             this.onError = true;
+            this.errorMessage = "Une erreur est survenue";
           },
         });
       },
@@ -91,7 +101,6 @@ export class MeComponent implements OnInit {
       .pipe(
         take(1),
         tap((messageApiResponse: MessageApiResponse) => {
-          console.log(messageApiResponse);
           this.subjects = this.subjects.filter((subject) => subject.id !== id);
         })
       )

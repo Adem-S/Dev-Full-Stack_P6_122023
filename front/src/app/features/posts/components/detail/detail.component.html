@@ -1,0 +1,49 @@
+<div class="post-detail" *ngIf="post; else postDoesntExist">
+  <mat-card class="card">
+    <mat-card-title class="card__title">
+      <button mat-button routerLink="">
+        <mat-icon type="button" fontIcon="arrow_back"></mat-icon>
+      </button>
+      <p>{{ post.title }}</p>
+    </mat-card-title>
+    <div class="card__subtitle">
+      <mat-card-subtitle>{{
+        post.date | date : "shortDate"
+      }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ post.username }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ post.subjectTitle }}</mat-card-subtitle>
+    </div>
+    <mat-card-content class="card__content">
+      {{ post.content }}
+    </mat-card-content>
+  </mat-card>
+  <div class="post-messsage">
+    <h3>Commentaires</h3>
+    <div class="post-messsage__container" *ngFor="let message of messages">
+      <p>{{ message.username }}</p>
+      <mat-card class="card-message">
+        <mat-card-content>{{ message.message }} </mat-card-content>
+      </mat-card>
+    </div>
+    <form class="post-messsage__form" [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline">
+        <textarea
+          matInput
+          rows="4"
+          maxlength="200"
+          placeholder="Écrivez ici votre commentaire"
+          formControlName="message"
+        ></textarea>
+      </mat-form-field>
+      <button mat-icon-button type="submit">
+        <img src="/assets/send.svg" alt="logo" />
+      </button>
+    </form>
+  </div>
+</div>
+
+<ng-template #postDoesntExist>
+  <div class="not-found">
+    <h2>No post found</h2>
+  </div>
+</ng-template>

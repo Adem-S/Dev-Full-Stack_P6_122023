@@ -36,7 +36,8 @@ export class RegisterComponent {
     this.authService.register(registerRequest).subscribe({
       next: (response: AuthSuccess) => {
         localStorage.setItem("token", response.token);
-
+        this.onError = false;
+        this.errorMessage = "";
         this.authService.me().subscribe({
           next: (user: User) => {
             this.sessionService.logIn(user);
@@ -44,6 +45,7 @@ export class RegisterComponent {
           },
           error: (error) => {
             this.onError = true;
+            this.errorMessage = "Une erreur est survenue";
           },
         });
       },

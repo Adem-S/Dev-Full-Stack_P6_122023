@@ -1,0 +1,49 @@
+<div class="form form--post">
+  <div class="form__back-btn">
+    <button mat-button routerLink="">
+      <mat-icon type="button" fontIcon="arrow_back"></mat-icon>
+    </button>
+    <h2>Créer un nouvel article</h2>
+  </div>
+
+  <form class="form__form" [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field appearance="outline">
+      <mat-select
+        placeholder="Sélectionner un thème"
+        formControlName="subjectId"
+      >
+        <mat-option
+          *ngFor="let subject of subjectsSubscribed"
+          [value]="subject.id"
+          >{{ subject.title }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        formControlName="title"
+        placeholder="Titre de l’article"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <textarea
+        matInput
+        rows="12"
+        placeholder="Contenu de l’article"
+        formControlName="content"
+      ></textarea>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      type="submit"
+      [disabled]="form.invalid"
+      class="button form__submit-btn"
+    >
+      Créer
+    </button>
+    <p *ngIf="onError" class="error">{{ errorMessage }}</p>
+  </form>
+</div>

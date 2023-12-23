@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Subject } from "../interfaces/subject.interface";
 import { MessageApiResponse } from "src/app/interfaces/messageApiResponse.interface";
 import { SubjectsResponse } from "../interfaces/subjectsResponse.interface";
 
