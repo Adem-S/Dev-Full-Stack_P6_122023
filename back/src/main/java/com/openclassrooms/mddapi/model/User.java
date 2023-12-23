@@ -1,5 +1,7 @@
 package com.openclassrooms.mddapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,10 +15,11 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String email;
-
 	private String username;
 
+	private String email;
+
+	@JsonIgnore
 	private String password;
 
 	public User() {

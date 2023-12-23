@@ -39,12 +39,12 @@ public class UserService {
 
 	public TokenResponse registerUser(RegisterRequest registerRequest) {
 
-		if (userRepository.existsByEmail(registerRequest.getEmail())) {
-			throw new TokenException("L'email est déjà utilisé.");
-		}
-
 		if (userRepository.existsByUsername(registerRequest.getUsername())) {
 			throw new TokenException("Le nom d’utilisateur est déjà utilisé.");
+		}
+
+		if (userRepository.existsByEmail(registerRequest.getEmail())) {
+			throw new TokenException("L'email est déjà utilisé.");
 		}
 
 		User user = new User();
@@ -94,35 +94,24 @@ public class UserService {
 
 	}
 
-	public User getUser(final Long id) {
-
-		Optional<User> user = userRepository.findById(id);
-		return user.orElseThrow(() -> new UserNotFoundException("No User Found"));
-
-	}
-
-	public User editUser(final Long id) {
-
-		Optional<User> user = userRepository.findById(id);
-		return user.orElseThrow(() -> new UserNotFoundException("No User Found"));
-
-	}
-
 	public TokenResponse updateUser(UpdateUserRequest updateUserRequest) {
-
-		if (userRepository.existsByEmail(updateUserRequest.getEmail())) {
-			throw new TokenException("L'email est déjà utilisé.");
-		}
-
-		if (userRepository.existsByUsername(updateUserRequest.getUsername())) {
-			throw new TokenException("Le nom d’utilisateur est déjà utilisé.");
-		}
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
 		String email = userDetails.getEmail();
+
+		String username = userDetails.getUsername();
+
+		if (!username.equals(updateUserRequest.getUsername())
+				&& userRepository.existsByUsername(updateUserRequest.getUsername())) {
+			throw new TokenException("Le nom d’utilisateur est déjà utilisé.");
+		}
+
+		if (!email.equals(updateUserRequest.getEmail()) && userRepository.existsByEmail(updateUserRequest.getEmail())) {
+			throw new TokenException("L'email est déjà utilisé.");
+		}
 
 		Optional<User> optionalUser = userRepository.findByEmail(email);
 
