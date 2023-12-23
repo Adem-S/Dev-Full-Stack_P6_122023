@@ -61,7 +61,7 @@ export class MeComponent implements OnInit {
     const updateUserRequest = this.form.value as UpdateUserRequest;
 
     if (
-      updateUserRequest.email == this.user?.email ||
+      updateUserRequest.email == this.user?.email &&
       updateUserRequest.username == this.user?.username
     ) {
       return;
