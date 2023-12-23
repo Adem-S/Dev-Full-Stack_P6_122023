@@ -2,12 +2,11 @@ import { Component, OnInit } from "@angular/core";
 
 import { Post } from "../../interfaces/post.interface";
 import { take, tap } from "rxjs";
-import { PostsResponse } from "../../interfaces/postsResponse.interface";
 import { PostService } from "../../services/post.service";
 import { ActivatedRoute } from "@angular/router";
 import { Message } from "../../interfaces/message.interface";
 import { MessageService } from "../../services/message.service";
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder } from "@angular/forms";
 import { MessageRequest } from "../../interfaces/messageRequest.interface";
 import { MessageApiResponse } from "src/app/interfaces/messageApiResponse.interface";
 import { MessagesResponse } from "../../interfaces/MessagesResponse.interface copy";
