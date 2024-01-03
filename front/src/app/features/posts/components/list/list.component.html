@@ -16,7 +16,7 @@
     ></mat-icon>
   </button>
 </div>
-<div class="card-section">
+<div class="card-section" *ngIf="posts && posts.length > 0; else noPosts">
   <mat-card
     class="card"
     *ngFor="let post of posts"
@@ -34,3 +34,9 @@
     </mat-card-content>
   </mat-card>
 </div>
+
+<ng-template #noPosts>
+  <div class="not-found">
+    <h2>Aucun article</h2>
+  </div>
+</ng-template>

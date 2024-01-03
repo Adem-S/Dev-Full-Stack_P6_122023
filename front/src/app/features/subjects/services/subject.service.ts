@@ -8,7 +8,7 @@ import { SubjectsResponse } from "../interfaces/subjectsResponse.interface";
   providedIn: "root",
 })
 export class SubjectService {
-  private pathService = "api/subject";
+  private pathService: string = "api/subject";
 
   constructor(private httpClient: HttpClient) {}
 

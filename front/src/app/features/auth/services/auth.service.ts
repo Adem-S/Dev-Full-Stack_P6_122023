@@ -10,7 +10,7 @@ import { User } from "src/app/interfaces/user.interface";
   providedIn: "root",
 })
 export class AuthService {
-  private pathService = "api/auth";
+  private pathService: string = "api/auth";
 
   constructor(private httpClient: HttpClient) {}
 

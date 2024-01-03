@@ -31,7 +31,7 @@ export class ListComponent implements OnInit {
       .subscribe();
   }
 
-  subscribe(id: number) {
+  subscribe(id: number): void {
     this.subjectService
       .subscribeFromSubject(id)
       .pipe(
@@ -43,7 +43,7 @@ export class ListComponent implements OnInit {
       .subscribe();
   }
 
-  unsubscribe(id: number) {
+  unsubscribe(id: number): void {
     this.subjectService
       .unsubscribeFromSubject(id)
       .pipe(
@@ -58,7 +58,7 @@ export class ListComponent implements OnInit {
   updateSubjectStatus(id: number, value: boolean): void {
     this.subjects = this.subjects.map((subject) => {
       if (subject.id == id) {
-        subject.subscribed = !subject.subscribed;
+        subject.subscribed = value;
       }
       return subject;
     });

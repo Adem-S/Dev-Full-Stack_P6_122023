@@ -17,7 +17,7 @@ export class RegisterComponent {
   public onError: boolean = false;
   public errorMessage: string = "";
 
-  public form = this.fb.group({
+  form = this.fb.group({
     username: ["", [Validators.required, Validators.min(3)]],
     email: ["", [Validators.required, Validators.email]],
     password: ["", [Validators.required, Validators.min(8)]],
@@ -30,7 +30,7 @@ export class RegisterComponent {
     private sessionService: SessionService
   ) {}
 
-  public submit(): void {
+  submit(): void {
     const registerRequest = this.form.value as RegisterRequest;
 
     this.authService.register(registerRequest).subscribe({

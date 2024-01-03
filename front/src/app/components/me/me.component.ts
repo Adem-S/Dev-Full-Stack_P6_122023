@@ -35,6 +35,21 @@ export class MeComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.sessionService.user;
+    this.getSubjectSubscribed();
+  }
+
+  form = this.fb.group({
+    username: [
+      this.sessionService.user?.username,
+      [Validators.required, Validators.min(3)],
+    ],
+    email: [
+      this.sessionService.user?.email,
+      [Validators.required, Validators.email],
+    ],
+  });
+
+  getSubjectSubscribed(): void {
     this.subjectService
       .getSubjectSubscribed()
       .pipe(
@@ -46,18 +61,7 @@ export class MeComponent implements OnInit {
       .subscribe();
   }
 
-  public form = this.fb.group({
-    username: [
-      this.sessionService.user?.username,
-      [Validators.required, Validators.min(3)],
-    ],
-    email: [
-      this.sessionService.user?.email,
-      [Validators.required, Validators.email],
-    ],
-  });
-
-  public submit(): void {
+  submit(): void {
     const updateUserRequest = this.form.value as UpdateUserRequest;
 
     if (
@@ -95,7 +99,7 @@ export class MeComponent implements OnInit {
     this.router.navigate([""]);
   }
 
-  unsubscribe(id: number) {
+  unsubscribe(id: number): void {
     this.subjectService
       .unsubscribeFromSubject(id)
       .pipe(

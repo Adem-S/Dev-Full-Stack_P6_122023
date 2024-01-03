@@ -10,7 +10,7 @@ import { PostRequest } from "../interfaces/postRequest.interface";
   providedIn: "root",
 })
 export class PostService {
-  private pathService = "api/post";
+  private pathService: string = "api/post";
 
   constructor(private httpClient: HttpClient) {}
 

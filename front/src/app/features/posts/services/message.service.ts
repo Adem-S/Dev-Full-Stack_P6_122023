@@ -10,7 +10,7 @@ import { MessageApiResponse } from "src/app/interfaces/messageApiResponse.interf
   providedIn: "root",
 })
 export class MessageService {
-  private pathService = "api/message";
+  private pathService: string = "api/message";
 
   constructor(private httpClient: HttpClient) {}
 

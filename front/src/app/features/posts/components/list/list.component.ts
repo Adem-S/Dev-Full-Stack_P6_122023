@@ -35,8 +35,8 @@ export class ListComponent implements OnInit {
   sortPosts(mode: string): void {
     this.sortMode = mode;
     this.posts = this.posts.sort((a, b) => {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
+      const dateA: Date = new Date(a.date);
+      const dateB: Date = new Date(b.date);
       return mode == "desc"
         ? dateB.getTime() - dateA.getTime()
         : dateA.getTime() - dateB.getTime();

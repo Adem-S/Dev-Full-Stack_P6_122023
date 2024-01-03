@@ -17,7 +17,7 @@ export class LoginComponent {
   onError: boolean = false;
   errorMessage: string = "";
 
-  public form = this.fb.group({
+  form = this.fb.group({
     emailOrUsername: ["", [Validators.required, Validators.min(3)]],
     password: ["", [Validators.required, Validators.min(8)]],
   });
@@ -29,7 +29,7 @@ export class LoginComponent {
     private sessionService: SessionService
   ) {}
 
-  public submit(): void {
+  submit(): void {
     const loginRequest = this.form.value as LoginRequest;
 
     this.authService.login(loginRequest).subscribe({

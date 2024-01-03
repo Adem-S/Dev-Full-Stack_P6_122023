@@ -6,10 +6,11 @@ import { User } from "../interfaces/user.interface";
   providedIn: "root",
 })
 export class SessionService {
-  public isLogged = false;
+  public isLogged: boolean = false;
   public user: User | undefined | null;
 
-  private isLoggedSubject = new BehaviorSubject<boolean>(this.isLogged);
+  private isLoggedSubject: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(this.isLogged);
 
   get isLogged$(): Observable<boolean> {
     return this.isLoggedSubject.asObservable();
